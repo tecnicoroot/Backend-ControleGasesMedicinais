@@ -6832,9 +6832,13 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
+<<<<<<< HEAD
     "stability-flags": {
         "tymon/jwt-auth": 20
     },
+=======
+    "stability-flags": [],
+>>>>>>> a4e5ff065dcbb240ffa21fca788bf3eb95ca1504
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
