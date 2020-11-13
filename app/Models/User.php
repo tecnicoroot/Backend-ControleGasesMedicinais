@@ -10,11 +10,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Lumen\Auth\Authorizable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract, JWTSubject
 {
     use Authenticatable, Authorizable, HasFactory;
-
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -22,7 +23,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','perfil','status'
     ];
 
     /**
@@ -31,7 +32,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'id', 'password', 'remember_token',
     ];
 
     // Rest omitted for brevity
@@ -53,7 +54,12 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     public function getJWTCustomClaims()
     {
-        return [];
+        return [
+                'email' => $this->email,
+                'AuthorizationClaim' => [$this->perfil] ,
+                'name' => $this->name,  
+                'id' => $this->id,  
+            ];
     }
 
     public function setPasswordAttribute($value)

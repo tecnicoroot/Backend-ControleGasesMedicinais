@@ -12,6 +12,7 @@ interface UserRepositoryInterface
     public function get($id);
     public function store(Request $request);
     public function update($id, Request $request);
+    public function updatePassword($id, Request $request);
     public function destroy($id);
     public function me();
     public function login(Request $request);

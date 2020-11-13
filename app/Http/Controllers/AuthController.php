@@ -18,11 +18,11 @@ class AuthController extends Controller
     public function __construct(UserService $userService)
     {
         $this->userService = $userService;
-        ##$this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     public function getAll(){
-
+       
         return $this->userService->getAll();
 
     }
@@ -40,7 +40,7 @@ class AuthController extends Controller
     }
 
     public function update($id, Request $request){
-
+        
         return $this->userService->update($id, $request);
 
     }
